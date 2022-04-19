@@ -25,8 +25,8 @@ async function findAllLanches() {
               <button class="Acoes__apagar btn">Apagar</button> 
     </div>
     <img src=${lanche.foto} alt=${
-      lanche.nome
-    } class="LancheCardItem__foto" width="25%">`
+        lanche.nome
+      } class="LancheCardItem__foto" width="25%">`
     );
   });
 }
@@ -101,20 +101,19 @@ async function createLanche() {
 
   const novoLanche = await response.json();
 
-
   const html = `
 <div class="LancheCardItem" id="LancheListaItem_{$novoLanche.id}">
 <div>
 <div class="LancheCardItem__local">${novoLanche.local}</div>
 <div class="LancheCardItem__localizacao">${novoLanche.localizacao}</div>
-<img src=${novoLanche.foto} alt=${
-    novoLanche.nome
-  } class="LancheCardItem__foto" width="25%">
 <div class="LancheCardItem__nome">${novoLanche.nome}</div>
 <div class="LancheCardItem__descricao">${novoLanche.descricao}</div>
 <div class="LancheCardItem__preco">${novoLanche.preco.toFixed(2)}</div>
 </div> 
-</div>`;
+</div>
+<img src=${novoLanche.foto} alt=${
+  novoLanche.nome
+} class="LancheCardItem__foto" width="25%">`;
 
   document.getElementById("LancheList").insertAdjacentHTML("beforeend", html);
 
