@@ -106,3 +106,47 @@ html {
   display: flex;
   justify-content: flex-end;
 }
+
+/* botões editar e apagar */
+
+.Acoes{
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.btn{
+  border: none;
+  border-radius: .3rem;
+  padding: .5rem;
+  max-width: 280px;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  width: 48%;
+  
+  transition: all 0.3s ease-in-out;
+}
+
+.Acoes__editar{
+  color:#003cff;
+  border: solid 1px #003cff;
+  background-color: transparent;
+}
+
+.Acoes__editar:hover{
+  color:#fff;
+  background-color: #003cff;
+}
+
+.Acoes__apagar{
+  color:#ff0000;
+  border: solid 1px #ff0000;
+  background-color: transparent;
+}
+
+.Acoes__apagar:hover{
+  color:#fff;
+  background-color: #ff0000;
+}

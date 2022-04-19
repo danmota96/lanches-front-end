@@ -7,7 +7,7 @@ async function findAllLanches() {
 
   lanches.forEach((lanche) => {
     document.getElementById("LancheList").insertAdjacentHTML(
-      'beforeend',
+      "beforeend",
       `  <div class="LancheLista" id="LancheList">
       <div class="ListaLancheItem">
         <div class="ListaLancheItem__local">${lanche.local}</div>
@@ -19,10 +19,10 @@ async function findAllLanches() {
       </div>
     </div> 
     <div class="LancheListaItem__acoes Acoes">
-              <button class="Acoes__editar btn" onclick="abrirModal(${
-                lanche.id
-              })">Editar</button> 
-              <button class="Acoes__apagar btn">Apagar</button> 
+    <button class="Acoes__editar btn" onclick="abrirModal(${
+      lanche.id
+    })">Editar</button> 
+    <button class="Acoes__apagar btn">Apagar</button> 
     </div>
     <img src=${lanche.foto} alt=${
         lanche.nome
@@ -52,8 +52,8 @@ async function findByIdLanches() {
 </div> 
 </div>
 <img src=${lanche.foto} alt=${
-  lanche.nome
-} class="LancheCardItem__foto" width="25%">`;
+    lanche.nome
+  } class="LancheCardItem__foto" width="25%">`;
 }
 
 findAllLanches();
@@ -111,9 +111,15 @@ async function createLanche() {
 <div class="LancheCardItem__preco">${novoLanche.preco.toFixed(2)}</div>
 </div> 
 </div>
+<div class="LancheListaItem__acoes Acoes">
+    <button class="Acoes__editar btn" onclick="abrirModal(${
+      lanche.id
+    })">Editar</button> 
+    <button class="Acoes__apagar btn">Apagar</button> 
+</div>
 <img src=${novoLanche.foto} alt=${
-  novoLanche.nome
-} class="LancheCardItem__foto" width="25%">`;
+    novoLanche.nome
+  } class="LancheCardItem__foto" width="25%">`;
 
   document.getElementById("LancheList").insertAdjacentHTML("beforeend", html);
 
