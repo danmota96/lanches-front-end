@@ -7,12 +7,12 @@ async function findAllLanches() {
 
   lanches.forEach((lanche) => {
     document.getElementById("LancheList").insertAdjacentHTML(
-      "beforeend",
-      `<div class="LancheLista">
+      'beforeend',
+      `  <div class="LancheLista" id="LancheList">
       <div class="ListaLancheItem">
         <div class="ListaLancheItem__local">${lanche.local}</div>
         <div class="ListaLancheItem__localizacao">${lanche.localizacao}</div>
-        >
+      
         <div class="ListaLancheItem__nome">${lanche.nome}</div>
         <div class="ListaLancheItem__descricao">${lanche.descricao}</div>
         <div class="ListaLancheItem__preco">${lanche.preco.toFixed(2)}</div>
@@ -46,14 +46,14 @@ async function findByIdLanches() {
   <div class="LancheCardItem">
   <div class="LancheCardItem__local">${lanche.local}</div>
   <div class="LancheCardItem__localizacao">${lanche.localizacao}</div>
-  <img src=${lanche.foto} alt=${
-    lanche.nome
-  } class="LancheCardItem__foto" width="25%">
   <div class="LancheCardItem__nome">${lanche.nome}</div>
   <div class="LancheCardItem__descricao">${lanche.descricao}</div>
   <div class="LancheCardItem__preco">${lanche.preco.toFixed(2)}</div>
 </div> 
-</div>`;
+</div>
+<img src=${lanche.foto} alt=${
+  lanche.nome
+} class="LancheCardItem__foto" width="25%">`;
 }
 
 findAllLanches();
