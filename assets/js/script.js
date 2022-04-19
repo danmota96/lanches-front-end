@@ -50,3 +50,12 @@ async function findByIdLanches(){
 }
 
 findAllLanches();
+
+//MODAL PARA CADASTRO 
+function abrirModalCadastro() {
+  document.querySelector(".modal-overlay").style.display = "flex";
+}
+
+function fecharModalCadastro() {
+  document.querySelector(".modal-overlay").style.display = "none";
+}
