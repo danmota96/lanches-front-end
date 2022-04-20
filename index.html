@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,7 +20,7 @@
             <div id="lancheEscolhido">
             </div>
         </div>
-           
+
         <section class="button-modal-create">
             <button type="button" class="default-button" onclick="abrirModal()">Cadastrar Lanche</button>
         </section>
@@ -45,25 +46,26 @@
             <div class="modal">
                 <div class="modal-header">
                     <h2>Cadastrar uma lanche/h2>
-                    <a onclick="fecharModal()" class="close-modal">x</a>
+                        <a onclick="fecharModal()" class="close-modal">x</a>
                 </div>
 
                 <div class="modal-body">
                     <div>
-                        <input type="hidden" id="id" >
+                        <input type="hidden" id="id">
                         <input type="text" name="local" id="local" placeholder="Nome da Lanchonete/Hamburgueria">
-                        <input type="text" name="localizacao" id="localizacao" placeholder="Localização da Lanchonete/Hamburgueria">
+                        <input type="text" name="localizacao" id="localizacao"
+                            placeholder="Localização da Lanchonete/Hamburgueria">
                         <input type="text" name="nome" id="nome" placeholder="Nome do Lanche">
                         <input type="text" name="foto" id="foto" placeholder="Link da Foto do Lanche">
                         <textarea type="text" name="descricao" id="descricao" placeholder="Descrição do Lanche"
                             rows="5"></textarea>
-                          <input type="number" name="preco" id="preco" placeholder="Preço da Lanche">
+                        <input type="number" name="preco" id="preco" placeholder="Preço da Lanche">
                         <button onclick="createLanche()">Cadastrar</button>
                     </div>
                 </div>
             </div>
         </section>
-        
+
         <h2>Meus lanches favoritos!</h2>
         <div class="Home__container">
             <div class="LancheLista" id="LancheList">
@@ -76,5 +78,3 @@
 </body>
 
 </html>
-
-

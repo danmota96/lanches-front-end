@@ -24,9 +24,7 @@ async function findAllLanches() {
         })">Apagar</button> 
       </div>
       </div>
-      <img src=${lanche.foto} alt=${
-        lanche.nome
-      } class="LancheCardItem__foto" >
+      <img src=${lanche.foto} alt=${lanche.nome} class="LancheCardItem__foto" >
   </div> `
     );
   });
@@ -156,7 +154,7 @@ async function createLanche() {
       </div>
       <img src=${novoLanche.foto} alt=${
     novoLanche.nome
-  } class="LancheCardItem__foto" width="25%">`;
+  } class="LancheCardItem__foto">`;
 
   if (modoEdicaoAtivado) {
     document.querySelector(`#LancheListaItem_${id}`).outerHTML = html;
