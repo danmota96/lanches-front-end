@@ -67,13 +67,14 @@ async function findByIdLanches() {
 findAllLanches();
 
 //MODAL PARA CADASTRO
+//TODO -- ARRUMAR BOTÕES CADASTRAR E EDITAR // 
 async function abrirModal(id = null) {
   if (id != null) {
     document.querySelector("#title-header-modal").innerText =
       "Atualizar um Lanche";
     document.querySelector("#button-form-modal").innerText = "Atualizar";
 
-    const response = await fetch(`${baseURL}/lanche/${id}`);
+    const response = await fetch(`${baseURL}/lanches/${id}`);
     const lanche = await response.json();
 
     document.querySelector("#local").value = lanche.local;
@@ -86,7 +87,7 @@ async function abrirModal(id = null) {
   } else {
     document.querySelector("#title-header-modal").innerText =
       "Cadastrar um Lanche";
-    document.querySelector("#button-form-modal").innerText = "Cadastrar";
+    document.querySelector("#button-form-modal").innerText = "";
   }
 
   document.querySelector(".modal-overlay").style.display = "flex";
