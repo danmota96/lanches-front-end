@@ -9,8 +9,7 @@
 </head>
 
 <body>
-    <div class="home">
-
+    <div class="Home">
         <h2>Pesquisar Lanche</h2>
         <div class="lanche-escolhido-espaco">
             <div id="lanche-escolhido-input-espaco">
@@ -22,20 +21,36 @@
         </div>
            
         <section class="button-modal-create">
-            <button type="button" class="default-button" onclick="abrirModalCadastro()">Cadastrar Paleta</button>
+            <button type="button" class="default-button" onclick="abrirModalCadastro()">Cadastrar Lanche</button>
+        </section>
+
+        <section class="modal-overlay" id="overlay-delete">
+            <div class="modal">
+                <div class="modal-header">
+                    <h2 id="title-header-modal">Confirmação de deleção</h2>
+                    <a onclick="fecharModal()" class="close-modal">x</a>
+                </div>
+                <div class="modal-body-delete">
+                    <p>Deseja realmente apagar essa paleta?</p>
+                    <div class="btns_delete">
+                        <button class="btn_delete_no btn_delete" onclick="fecharModalDelete()">Não</button>
+                        <button class="btn_delete_yes btn_delete">Sim</button>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section class="modal-overlay" id="overlay">
 
             <div class="modal">
-
                 <div class="modal-header">
                     <h2>Cadastrar uma lanche/h2>
-                    <a onclick="fecharModalCadastro()" class="close-modal">x</a>
+                    <a onclick="fecharModal()" class="close-modal">x</a>
                 </div>
 
                 <div class="modal-body">
                     <div>
+                        <input type="hidden" id="id" >
                         <input type="text" name="local" id="local" placeholder="Nome da Lanchonete/Hamburgueria">
                         <input type="text" name="localizacao" id="localizacao" placeholder="Localização da Lanchonete/Hamburgueria">
                         <input type="text" name="nome" id="nome" placeholder="Nome do Lanche">
@@ -48,19 +63,18 @@
                 </div>
             </div>
         </section>
+        
         <h2>Meus lanches favoritos!</h2>
-
-        <div class="Home_container">
+        <div class="Home__container">
             <div class="LancheLista" id="LancheList">
                 <div class="ListaLancheItem">
                 </div>
             </div>
         </div>
-        
-
-        
         <script src="./assets/js/script.js"></script>
 
 </body>
 
 </html>
+
+

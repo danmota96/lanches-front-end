@@ -1,15 +1,191 @@
-@import url('https://fonts.googleapis.com/css2?family=Akshar:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Exo:400,700");
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Exo, sans-serif;
+}
 
 body,
 html {
-  margin: 0;
-  padding: 0;
   width: 100%;
   min-height: 100vh;
   overflow: auto;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: #ffffff;
 }
 
+.Home {
+  position: relative;
+  background-image: radial-gradient(
+    farthest-corner at 40px 40px,
+    #50c5ee 60%,
+    #00d4ff80 100%
+  );
+  min-height: calc(100vh - 60px);
+  margin: 15px;
+  padding: 15px;
+  border-radius: 20px;
+  color: #000000;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+}
+
+.Home h2 {
+  display: flex;
+  justify-content: center;
+  color: #000000;
+}
+
+.Home__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+@media (max-width: 350px) {
+  .Home__container {
+    justify-content: unset;
+  }
+}
+
+.LancheLista {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 25px 50px;
+}
+
+@media (max-width: 1220px) {
+  .LancheLista {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 840px) {
+  .LancheLista {
+    grid-template-columns: 1fr;
+  }
+}
+
+.LancheCardItem,
+.LancheListaItem {
+  background: #ffffff4d;
+  border-radius: 10px;
+  padding: 10px;
+  width: 315px;
+  display: flex;
+  justify-content: space-around;
+ 
+}
+
+.LancheCardItem {
+  margin: 20px 0;
+  height: 150px;
+  width: 100%;
+}
+
+@media (max-width: 400px) {
+  .LancheCardItem,
+  .LancheListaItem {
+    width: 210px;
+    height: 180px;
+  }
+}
+
+.LancheCardItem > div,
+.LancheListaItem > div {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.LancheCardItem__local,
+.ListaLancheItem__local {
+  font-size: 1.5em;
+  font-weight: 700;
+  line-height: 100%;
+}
+
+.LancheCardItem__localizacao,
+.ListaLancheItem__localizacao {
+  font-size: 1.5em;
+  font-weight: 700;
+  line-height: 100%;
+}
+
+.LancheCardItem__nome,
+.ListaLancheItem__nome {
+  font-size: 1.2em;
+  font-weight: 700;
+  line-height: 100%;
+}
+
+.LancheCardItem__descricao,
+.ListaLancheItem__descricao {
+  font-size: 0.9em;
+}
+
+.LancheCardItem__preco,
+.ListaLancheItem__preco {
+  color: #9400d3;
+}
+
+.LancheCardItem__foto {
+  height: 150px;
+  margin-right: -60px;
+}
+
+.lanche-escolhido-espaco {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+#idLanche {
+  padding: 0.5rem;
+  width: 315px;
+  border: none;
+  border-radius: 0.2rem;
+}
+
+.default-button {
+  background-color: transparent;
+  border: 2px solid #9400d3;
+  padding: 0.4rem;
+  color: #9400d3;
+  font-weight: 600;
+  border-radius: 0.2rem;
+  width: 180px;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  font-size: 1rem;
+}
+
+.default-button:hover {
+  background-color: #9400d3;
+  color: #ffffff;
+}
+
+#lanche-escolhido-input-espaco {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.Header {
+  max-width: 1110px;
+  margin: 0 auto 25px auto;
+  position: relative;
+}
+
+.row {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin: 20px 0 35px 0;
+}
 
 /* MODAL */
 .modal-overlay{
@@ -109,13 +285,6 @@ html {
 
 /* botões editar e apagar */
 
-.Acoes{
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  margin-top: 1rem;
-}
-
 .btn{
   border: none;
   border-radius: .3rem;
@@ -149,4 +318,52 @@ html {
 .Acoes__apagar:hover{
   color:#fff;
   background-color: #ff0000;
+}
+
+.modal-body-delete{
+  display: flex;
+  flex-wrap: wrap;
+}
+.modal-body-delete p{
+  width: 100%;
+  padding: 2rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.btns_delete{
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+
+}
+
+.btn_delete{
+  background-color: transparent;
+  padding: .5rem;
+  font-size: 1.2rem;
+  border-radius: .5rem;
+  width: 30%;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn_delete_no{
+  color: #ff0000;
+  border: solid 1px #ff0000;
+}
+
+.btn_delete_no:hover{
+  background-color: #ff0000;
+  color: #fff;
+}
+
+.btn_delete_yes{
+  color: #00b309;
+  border: solid 1px #00b309;
+}
+
+.btn_delete_yes:hover{
+  background-color: #00b309;
+  color: #fff;
 }
