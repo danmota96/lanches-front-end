@@ -21,46 +21,33 @@
             </div>
         </div>
 
-        <section class="button-modal-create">
-            <button type="button" class="default-button" onclick="abrirModal()">Cadastrar Lanche</button>
-        </section>
+        
 
-        <section class="modal-overlay" id="overlay-delete">
-            <div class="modal">
-                <div class="modal-header">
-                    <h2 id="title-header-modal">Confirmação de deleção</h2>
-                    <a onclick="fecharModal()" class="close-modal">x</a>
-                </div>
-                <div class="modal-body-delete">
-                    <p>Deseja realmente apagar essa paleta?</p>
-                    <div class="btns_delete">
-                        <button class="btn_delete_no btn_delete" onclick="fecharModalDelete()">Não</button>
-                        <button class="btn_delete_yes btn_delete">Sim</button>
-                    </div>
-                </div>
-            </div>
+       
+
+        <section class="button-modal-create">
+            <button type="button" class="default-button" onclick="abrirModalCadastro()">Cadastrar Paleta</button>
         </section>
 
         <section class="modal-overlay" id="overlay">
 
             <div class="modal">
+
                 <div class="modal-header">
                     <h2>Cadastrar uma lanche/h2>
-                        <a onclick="fecharModal()" class="close-modal">x</a>
+                    <a onclick="fecharModalCadastro()" class="close-modal">x</a>
                 </div>
 
                 <div class="modal-body">
                     <div>
-                        <input type="hidden" id="id">
                         <input type="text" name="local" id="local" placeholder="Nome da Lanchonete/Hamburgueria">
-                        <input type="text" name="localizacao" id="localizacao"
-                            placeholder="Localização da Lanchonete/Hamburgueria">
+                        <input type="text" name="localizacao" id="localizacao" placeholder="Localização da Lanchonete/Hamburgueria">
                         <input type="text" name="nome" id="nome" placeholder="Nome do Lanche">
                         <input type="text" name="foto" id="foto" placeholder="Link da Foto do Lanche">
                         <textarea type="text" name="descricao" id="descricao" placeholder="Descrição do Lanche"
                             rows="5"></textarea>
-                        <input type="number" name="preco" id="preco" placeholder="Preço da Lanche">
-                        <button id="button-form-modal" onclick="createLanche()">Cadastrar</button>
+                          <input type="number" name="preco" id="preco" placeholder="Preço da Lanche">
+                        <button onclick="createLanche()">Cadastrar</button>
                     </div>
                 </div>
             </div>

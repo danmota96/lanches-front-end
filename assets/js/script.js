@@ -14,7 +14,7 @@ async function findAllLanches() {
       
         <div class="ListaLancheItem__nome">${lanche.nome}</div>
         <div class="ListaLancheItem__descricao">${lanche.descricao}</div>
-        <div class="ListaLancheItem__preco">${lanche.preco.toFixed(2)}</div>
+        <div class="ListaLancheItem__preco">${lanche.preco}</div>
         <div class="LancheListaItem__acoes Acoes">
           <button class="Acoes__editar btn" onclick="abrirModal(${
             lanche.id
@@ -32,6 +32,8 @@ async function findAllLanches() {
 
 //localizar um lanche pelo seu ID
 
+
+
 async function findByIdLanches() {
   const id = document.querySelector("#idLanche").value;
   const response = await fetch(`${baseUrl}/lista-lanches/${id}`);
@@ -47,7 +49,7 @@ async function findByIdLanches() {
       <div class="LancheCardItem__localizacao">${lanche.localizacao}</div>
       <div class="LancheCardItem__nome">${lanche.nome}</div>
       <div class="LancheCardItem__descricao">${lanche.descricao}</div>
-      <div class="LancheCardItem__preco">${lanche.preco.toFixed(2)}</div>
+      <div class="LancheCardItem__preco">${lanche.preco}</div>
       </div> 
       </div>
       <div class="LancheListaItem__acoes Acoes">
@@ -68,7 +70,16 @@ findAllLanches();
 
 //MODAL PARA CADASTRO
 //TODO -- ARRUMAR BOTÕES CADASTRAR E EDITAR // 
-async function abrirModal(id = null) {
+function abrirModalCadastro() {
+  document.querySelector(".modal-overlay").style.display = "flex";
+}
+
+function fecharModalCadastro() {
+  document.querySelector(".modal-overlay").style.display = "none";
+}
+
+
+/* async function abrirModal(id = null) {
   if (id != null) {
     document.querySelector("#title-header-modal").innerText =
       "Atualizar um Lanche";
@@ -195,3 +206,4 @@ const deleteLanche = async (id) => {
   findAllLanches();
   fecharModalDelete();
 };
+ */
