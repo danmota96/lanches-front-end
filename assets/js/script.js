@@ -74,10 +74,67 @@ function abrirModalCadastro() {
   document.querySelector(".modal-overlay").style.display = "flex";
 }
 
-function fecharModalCadastro() {
-  document.querySelector(".modal-overlay").style.display = "none";
+function limparModal (){
+  const local = document.querySelector('#local').value = '';
+  const localizacao = document.querySelector('#localizacao').value = '';
+  const descricao = document.querySelector('#descricao').value = '';
+  const nome = document.querySelector('#nome').value = '';
+  const preco = document.querySelector('#preco').value = 0;
+  const foto = document.querySelector('#foto').value = '';
 }
 
+function fecharModalCadastro() {
+  document.querySelector(".modal-overlay").style.display = "none";
+  limparModal();
+}
+
+async function createLanche() {
+  const local = document.querySelector("#local").value;
+  const localizacao = document.querySelector("#localizacao").value;
+  const foto = document.querySelector("#foto").value;
+  const nome = document.querySelector("#nome").value;
+  const descricao = document.querySelector("#descricao").value;
+  const preco = document.querySelector("#preco").value;
+
+  const lanche = {
+    local,
+    localizacao,
+    foto,
+    nome,
+    descricao,
+    preco,
+  };
+
+  const response = await fetch(baseUrl + "/create", {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    mode: "cors",
+    body: JSON.stringify(lanche),
+  });
+
+  const novoLanche = await response.json();
+
+
+  const html = `
+<div class="LancheCardItem" id="LancheListaItem_{$novoLanche.id}">
+<div>
+<div class="LancheCardItem__local">${novoLanche.local}</div>
+<div class="LancheCardItem__localizacao">${novoLanche.localizacao}</div>
+<img src=${novoLanche.foto} alt=${
+    novoLanche.nome
+  } class="LancheCardItem__foto" width="25%">
+<div class="LancheCardItem__nome">${novoLanche.nome}</div>
+<div class="LancheCardItem__descricao">${novoLanche.descricao}</div>
+<div class="LancheCardItem__preco">${novoLanche.preco}</div>
+</div> 
+</div>`;
+
+  document.getElementById("LancheList").insertAdjacentHTML("beforeend", html);
+
+  fecharModalCadastro();
+}
 
 /* async function abrirModal(id = null) {
   if (id != null) {
