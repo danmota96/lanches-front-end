@@ -22,11 +22,8 @@
         </div>
 
         
-
-       
-
         <section class="button-modal-create">
-            <button type="button" class="default-button" onclick="abrirModalCadastro()">Cadastrar Paleta</button>
+            <button type="button" class="default-button" onclick="abrirModal()">Cadastrar Paleta</button>
         </section>
 
         <section class="modal-overlay" id="overlay">
@@ -34,12 +31,13 @@
             <div class="modal">
 
                 <div class="modal-header">
-                    <h2>Cadastrar uma lanche</h2>
+                    <h2 id="title-header-modal">Cadastrar uma lanche</h2>
                     <a onclick="fecharModalCadastro()" class="close-modal">x</a>
                 </div>
 
                 <div class="modal-body">
                     <div>
+                        <input type="hidden" id="id">
                         <input type="text" name="local" id="local" placeholder="Nome da Lanchonete/Hamburgueria">
                         <input type="text" name="localizacao" id="localizacao" placeholder="Localização da Lanchonete/Hamburgueria">
                         <input type="text" name="nome" id="nome" placeholder="Nome do Lanche">
@@ -47,7 +45,7 @@
                         <textarea type="text" name="descricao" id="descricao" placeholder="Descrição do Lanche"
                             rows="5"></textarea>
                           <input type="number" name="preco" id="preco" placeholder="Preço da Lanche">
-                        <button onclick="createLanche()">Cadastrar</button>
+                        <button class="default-button" id="button-form-modal" onclick="createLanche()">Cadastrar</button>
                     </div>
                 </div>
             </div>
