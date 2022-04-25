@@ -1,4 +1,5 @@
 const baseUrl = "http://localhost:3000/lanches";
+const msgAlert = document.querySelector(".msg-alert");
 
 async function findAllLanches() {
   const response = await fetch(`${baseUrl}/lista-lanches`);
@@ -7,8 +8,8 @@ async function findAllLanches() {
 
   lanches.forEach((lanche) => {
     document.getElementById("LancheList").insertAdjacentHTML(
-      "beforeend",
-      `<div class="LancheLista" id="LancheListaItem_${lanche.id}">
+      'beforeend',
+      `<div class="LancheLista" id="LancheListaItem_'${lanche._id}'">
         <div class="ListaLancheItem__local">${lanche.local}</div>
         <div class="ListaLancheItem__localizacao">${lanche.localizacao}</div>
         <div class="ListaLancheItem__nome">${lanche.nome}</div>
@@ -16,12 +17,12 @@ async function findAllLanches() {
         <div class="ListaLancheItem__preco">${lanche.preco}</div>
         
         <div class="LancheListaItem__acoes Acoes">
-        <button class="Acoes__editar btn" onclick="abrirModal(${
-          lanche.id
-        })">Editar</button> 
-        <button class="Acoes__apagar btn" onclick="abrirModalDelete(${
-          lanche.id
-        })" >Apagar</button> 
+        <button class="Acoes__editar btn" onclick="abrirModal('${
+          lanche._id
+        }')">Editar</button> 
+        <button class="Acoes__apagar btn" onclick="abrirModalDelete('${
+          lanche._id
+        }')" >Apagar</button> 
         </div>
       
       <img src=${lanche.foto} alt=${lanche.nome} class="LancheCardItem__foto" >
@@ -30,16 +31,35 @@ async function findAllLanches() {
   });
 }
 
+findAllLanches();
+
 //localizar um lanche pelo seu ID
 async function findByIdLanches() {
   const id = document.querySelector("#idLanche").value;
+
+//validar o ID inserido no campo
+  if (id == '') {
+    localStorage.setItem('message', 'Digite um ID para pesquisar!');
+    localStorage.setItem('type', 'danger');
+    closeMessageAlert();
+    return;
+  }
+
   const response = await fetch(`${baseUrl}/lista-lanches/${id}`);
   const lanche = await response.json();
+
+  if (lanche.message != undefined) {
+    localStorage.setItem('message', lanche.message);
+    localStorage.setItem('type', 'danger');
+    showMessageAlert();
+    return;
+  }
+  
 
   const lancheEscolhidoDiv = document.querySelector("#lancheEscolhido");
 
   lancheEscolhidoDiv.innerHTML = `
-  <div class="LancheCardItem" id="LancheCardItem_${lanche.id}">
+  <div class="LancheCardItem" id="LancheCardItem_'${lanche._id}'">
       <div>
       <div class="LancheCardItem">
       <div class="LancheCardItem__local">${lanche.local}</div>
@@ -51,10 +71,10 @@ async function findByIdLanches() {
       </div>
       <div class="LancheListaItem__acoes Acoes">
               <button class="Acoes__editar btn" onclick="abrirModal(${
-                lanche.id
+                'lanche.id'
               })">Editar</button> 
             <button class="Acoes__apagar btn" onclick="abrirModalDelete(${
-              lanche.id
+              'lanche.id'
             })">Apagar</button> 
       </div>
   </div>
@@ -63,12 +83,10 @@ async function findByIdLanches() {
   } class="LancheCardItem__foto" width="25%">`;
 }
 
-findAllLanches();
 
 //MODAL PARA CADASTRO
-//TODO -- ARRUMAR BOTÕES CADASTRAR E EDITAR // 
-async function abrirModal(id = null) {
-  if (id != null) {
+async function abrirModal(id = '') {
+  if (id != '') {
     //ALTERAR TEXTOS DO MODAL (EDITAR E CADASTRAR)
     document.querySelector('#title-header-modal').innerHTML = 
     'Atualizar Lanche';
@@ -133,7 +151,7 @@ async function createLanche() {
 
   const modoEdicaoAtivado = id > 0;
 //se o modoEdicaoAtivado estiver ativado, eu quero atualizar uma id
-  const endpoint = baseUrl + (modoEdicaoAtivado ? '/update/${id}' : '/create' );
+  const endpoint = baseUrl + (modoEdicaoAtivado ? `/update/${id}` : `/create` );
 
   const response = await fetch(endpoint, {
     method: modoEdicaoAtivado ? 'put' : 'post',
@@ -145,6 +163,26 @@ async function createLanche() {
   });
 
   const novoLanche = await response.json();
+
+  /* validar mensagem do back-end */
+
+  if (novoLanche.message != undefined) {
+    localStorage.setItem('message', novoLanche.message);
+    localStorage.setItem('type', 'danger');
+    showMessageAlert();
+    return;
+  }
+
+/* MENSAGENS PARA CRIAÇÃO E ATUALIZAÇÃO DE ID */
+  if (modoEdicaoAtivado) {
+    localStorage.setItem('message', 'Lanche atualizado com sucesso');
+    localStorage.setItem('type', 'success');
+  } else {
+    localStorage.setItem('message', 'Lanche criado com sucesso');
+    localStorage.setItem('type', 'success');
+  }
+/* ATUALIZAR PÁGINA APÓS CRIAR OU EDITAR UM ID */
+  document.location.reload(true);
 
   const html = `
   <div class="LancheCardItem" id="LancheListaItem_${novoLanche.id}">
@@ -160,7 +198,7 @@ async function createLanche() {
   </div> 
   <div class="LancheListaItem__acoes Acoes">
       <button class="Acoes__editar btn" onclick="abrirModal(${
-        lanche.id
+        'lanche.id'
       })">Editar</button> 
       <button class="Acoes__apagar btn">Apagar</button> 
   </div>
@@ -204,9 +242,26 @@ const deleteLanche = async (id) => {
   });
 
   const result = await response.json();
-  alert(result.message);
+  localStorage.setItem('message', result.message);
+  localStorage.setItem("type", "success");
+
+  document.location.reload(true);
 
   document.getElementById('LancheList').innerHTML = '';
   findAllLanches();
   fecharModalDelete();
 };
+
+/* MENSAGENS PARA AVISO */
+function showMessageAlert() {
+  msgAlert.innerText = localStorage.getItem("message");
+  msgAlert.classList.add(localStorage.getItem("type"));
+  closeMessageAlert();
+}
+function closeMessageAlert() {
+  setTimeout(function () {
+    msgAlert.innerText = localStorage.getItem("message");
+    msgAlert.classList.remove(localStorage.getItem("type"));
+    localStorage.clear();
+  }, 3000);
+}
