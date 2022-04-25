@@ -19,7 +19,9 @@ async function findAllLanches() {
         <button class="Acoes__editar btn" onclick="abrirModal(${
           lanche.id
         })">Editar</button> 
-        <button class="Acoes__apagar btn">Apagar</button> 
+        <button class="Acoes__apagar btn" onclick="abrirModalDelete(${
+          lanche.id
+        })" >Apagar</button> 
         </div>
       
       <img src=${lanche.foto} alt=${lanche.nome} class="LancheCardItem__foto" >
@@ -68,12 +70,12 @@ findAllLanches();
 async function abrirModal(id = null) {
   if (id != null) {
     //ALTERAR TEXTOS DO MODAL (EDITAR E CADASTRAR)
-    document.queryselector('#title-header-modal').innerHTML = 
-    'Atualizar um Lanche';
+    document.querySelector('#title-header-modal').innerHTML = 
+    'Atualizar Lanche';
     document.querySelector('#button-form-modal').innerHTML = 
     'Atualizar';
 
-    const response = await fetch('${baseUrl}/lanche/${id}');
+    const response = await fetch(`${baseUrl}/lista-lanches/${id}`);
     const lanche = await response.json();
 
     document.querySelector("#local").value = lanche.local;
@@ -131,7 +133,7 @@ async function createLanche() {
 
   const modoEdicaoAtivado = id > 0;
 //se o modoEdicaoAtivado estiver ativado, eu quero atualizar uma id
-  const endpoint = baseUrl + (modoEdicaoAtivado ? `/update/${id}` : '/create' );
+  const endpoint = baseUrl + (modoEdicaoAtivado ? '/update/${id}' : '/create' );
 
   const response = await fetch(endpoint, {
     method: modoEdicaoAtivado ? 'put' : 'post',
@@ -177,3 +179,34 @@ async function createLanche() {
   fecharModalCadastro();
 }
 
+
+function abrirModalDelete(id) {
+  document.querySelector('#overlay-delete').style.display = 'flex';
+
+  const btnSim = document.querySelector('.btn_delete_yes');
+
+  btnSim.addEventListener('click', function () {
+    deleteLanche(id);
+  });
+}
+
+function fecharModalDelete() {
+  document.querySelector('#overlay-delete').style.display = 'none';
+}
+
+const deleteLanche = async (id) => {
+  const response = await fetch(`${baseUrl}/delete/${id}`, {
+    method: 'delete',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    mode: 'cors',
+  });
+
+  const result = await response.json();
+  alert(result.message);
+
+  document.getElementById('LancheList').innerHTML = '';
+  findAllLanches();
+  fecharModalDelete();
+};
