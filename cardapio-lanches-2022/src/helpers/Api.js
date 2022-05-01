@@ -8,7 +8,7 @@ const LancheContext = {
   };
 
 export const Api = {
-    baseUrl: "http://localhost:3333/lanches",
+    baseUrl: "https://apilanchesblue.onrender.com",
     ... LancheContext,
 };
 
