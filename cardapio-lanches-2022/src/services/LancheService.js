@@ -2,6 +2,7 @@ import { Api } from "../helpers/Api"
 
 const parseResponse = (response) => response.json();
 
+
 export const LancheService = {
     /* fetch (URL, {método}).then */
     getLista: () => 

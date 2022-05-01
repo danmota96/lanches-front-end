@@ -16,13 +16,13 @@
     align-items: center;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.3);
-    width: 450px;
+    width: 480px;
     height: 45px;
   }
   
   .Logo__titulo {
     position: absolute;
-    left: 55px;
+    left: 110px;
     font-family: "Exo";
     font-weight: 700;
     font-size: 2.5em;
@@ -30,8 +30,8 @@
   
   .Logo__icone {
     position: absolute;
-    left: -20px;
-    top: -15px;
+    left: -200px;
+    top: -215px;
   }
   
   .Sacola {

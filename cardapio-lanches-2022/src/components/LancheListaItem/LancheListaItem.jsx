@@ -19,7 +19,6 @@ function LancheListaItem({
   return (
     <div className="LancheListaItem" key={`LancheListaItem-${index}`}>
       {badgeCounter(quantidadeSelecionada, index)}
-
       <div>
         <div className="LancheListaItem__local">{lanche.local}</div>
         <div className="LancheListaItem__localizacao">{lanche.localizacao}</div>
@@ -43,7 +42,7 @@ function LancheListaItem({
         className="LancheListaItem__foto"
         src={lanche.foto}
         alt="erro"
-        width={30}
+        
       />
     </div>
   );

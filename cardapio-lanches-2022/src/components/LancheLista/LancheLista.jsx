@@ -4,6 +4,7 @@ import LancheListaItem from "components/LancheListaItem/LancheListaItem";
 import { LancheService } from "services/LancheService";
 
 
+
 function LancheLista() {
   const [lanches, setLanches] = useState([]);
   const [lancheSelecionado, setLancheSelecionado] = useState({});
@@ -37,7 +38,7 @@ function LancheLista() {
   return (
     <div className="LancheLista">
       {lanches.map((lanche, index) => (
-
+        
         <LancheListaItem
           key={`LancheListaItem-${index}`}
           lanche={lanche}
@@ -46,9 +47,10 @@ function LancheLista() {
           onAdd={(index) => onAdd(index)}
           onRemove={(index) => onRemove(index)}
         />
-
+        
       ))}
     </div>
+    
   );
 }
 

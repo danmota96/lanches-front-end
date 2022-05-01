@@ -9,7 +9,7 @@ function Navbar() {
         <div className="Header__logo Logo">
           <img
             src={logo}
-            width="250px"
+            width="500px"
             alt="Logo LFAV"
             className="Logo__icone"
           />
