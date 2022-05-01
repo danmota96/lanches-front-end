@@ -8,17 +8,12 @@ function LancheLista() {
   const [lanches, setLanches] = useState([]);
   const [lancheSelecionado, setLancheSelecionado] = useState({});
 
-  const getLista = async () => {
-    const response = await LancheService.getLista();
-    setLanches(response);
-  };
-
   const onAdd = (lancheIndex) => {
     const lanche = {
       [lancheIndex]: +(lancheSelecionado[lancheIndex] || 0) + 1,
     };
     setLancheSelecionado({ ...lancheSelecionado, ...lanche });
-    console.log(lancheSelecionado);
+   
   };
 
   const onRemove = (lancheIndex) => {
@@ -26,12 +21,17 @@ function LancheLista() {
       [lancheIndex]: +(lancheSelecionado[lancheIndex] || 0) - 1,
     };
     setLancheSelecionado({ ...lancheSelecionado, ...lanche });
-    console.log(lancheSelecionado);
+   
+  };
+
+  const getLista = async () => {
+    const response = await LancheService.getLista();
+    setLanches(response);
   };
 
   useEffect(() => {
     getLista();
-  }, []);
+  },[]);
   
 
   return (
