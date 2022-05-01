@@ -16,7 +16,7 @@ export const lanches = [
       nome: 'Triplo Cheddar Bacon',
       descricao:
         '3 carnes, queijo mussarela, cheddar e catupiry, alface, tomate, ovo de codorna, azeitona, milho, batata palha',
-      foto: require("assets/images/101.png"), 
+      foto: require("../assets/images/korujao.png"), 
       preco: 19.0,
 	  carneCaseira: false,
 
