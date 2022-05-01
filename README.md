@@ -9,6 +9,7 @@ Express
 HTML
 CSS
 MONGODB
+Deploy via Render
 
 Projeto
 Projeto construído na turma C011-M03-FLS do curso de Desenvolvedor Full-Stack da BlueEdTech.
@@ -26,7 +27,20 @@ digitar NPM RUN DEV no terminal
 No repositório de Frontend -
 Abrir o arquivo index.html no pelo Live Server
 
+REACT JS 
+Selecionar a pasta "cardapio-lanches-2022"
+executar npm start
+
 ---
 
-Conectado via mongoDB
+link Swagger: https://apilanchesblue.onrender.com/lanches/api-docs
 
+URL api (render): https://apilanchesblue.onrender.com
+
+
+Conectado via mongoDB Atlas
+
+---
+TO-DO
+Modal
+Cardápio
