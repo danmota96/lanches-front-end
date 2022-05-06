@@ -13,17 +13,13 @@ function LancheDetalhesModal({ lanche, closeModal }) {
           </div>
           <div className="LancheDetalhesModal__descricao">
             {" "}
-            <b>Sabor:</b> {lanche.sabor}{" "}
-          </div>
-            <div className="LancheDetalhesModal__descricao">
-            {" "}
             <b>Descrição:</b> {lanche.descricao}{" "}
           </div>
         </div>
         <img
           className="LancheDetalhesModal__foto"
           src={lanche.foto}
-          alt='erro'
+          alt="erro"
         />
       </div>
     </Modal>

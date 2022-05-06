@@ -7,17 +7,29 @@ function LancheListaItem({
   index,
   onRemove,
   onAdd,
-}) {
-  const badgeCounter = (canRender, index) =>
+  clickItem,
+}) 
+
+{
+  const badgeCounter = (canRender) =>
     Boolean(canRender) && (
       <span className="LancheListaItem__badge">{quantidadeSelecionada}</span>
     );
 
   const removeButton = (canRender, index) => 
-      Boolean(canRender) && (<button className="Acoes__remover" onClick={() => onRemove(index)}>remover</button>);
+      Boolean(canRender) && (<button className="Acoes__remover" 
+      onClick={(e) => {
+        e.stopPropagation();
+        onRemove(index);
+      }}
+      >
+        remover
+      </button>);
 
   return (
-    <div className="LancheListaItem" key={`LancheListaItem-${index}`}>
+    <div className="LancheListaItem" key={`LancheListaItem-${index}`} 
+      onClick={() => clickItem(lanche.id)}>
+        
       {badgeCounter(quantidadeSelecionada, index)}
       <div>
         <div className="LancheListaItem__local">{lanche.local}</div>
@@ -32,7 +44,10 @@ function LancheListaItem({
           className={`Acoes__adicionar ${
             !quantidadeSelecionada && "Acoes__adicionar--preencher"
           }`}
-          onClick={() => onAdd(index)}
+          onClick={(e) =>{
+            e.stopPropagation(); 
+            onAdd(index);
+          }}
         >
           adicionar
         </button>

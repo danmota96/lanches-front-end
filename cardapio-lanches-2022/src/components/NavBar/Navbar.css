@@ -77,10 +77,25 @@
     }
   
     .row {
-      column-gap: 20px;
+      display: flex;
+      flex-direction: column;
+      row-gap: 20px;
     }
   
     .Logo__titulo {
       font-size: 1.5em;
     }
   }
+
+.Opcoes {
+  display: flex;
+}
+
+.Lanche {
+  background: none;
+  border: none;
+}
+
+.Lanche__icone {
+  cursor: pointer;
+}
