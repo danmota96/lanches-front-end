@@ -9,7 +9,8 @@ Express
 HTML
 CSS
 MONGODB
-Deploy via Render
+Deploy do back-end via Render
+Deploy do front-end via Vercel
 
 Projeto
 Projeto construído na turma C011-M03-FLS do curso de Desenvolvedor Full-Stack da BlueEdTech.
