@@ -2,17 +2,17 @@ import Modal from "components/Modal/Modal";
 import "./AdicionaEditaLancheModal.css";
 import { useState, useEffect } from "react";
 import { LancheService } from "services/LancheService";
+import { ActionMode } from "constants/index";
 
 
-
-function AdicionaEditaLancheModal({closeModal, onCreateLanche}) {
+function AdicionaEditaLancheModal({closeModal, onCreateLanche, mode, lancheToUpdate, onUpdateLanche}) {
     const form = {
-        local: "",
-        localizacao: "",
-        nome: "",
-        descricao: "",
-        preco: "",
-        foto: "",
+        local: lancheToUpdate?.local ?? "",
+        localizacao: lancheToUpdate?.localizacao ?? "",
+        nome: lancheToUpdate?.nome ?? "",
+        descricao: lancheToUpdate?.descricao ?? "",
+        preco: lancheToUpdate?.preco ?? "",
+        foto: lancheToUpdate?.foto ?? "",
     };
 
     const [state, setState] = useState(form);
@@ -31,7 +31,7 @@ function AdicionaEditaLancheModal({closeModal, onCreateLanche}) {
         && state.localizacao.length
         && state.nome.length
         && state.descricao.length
-        && state.preco.length
+        && String(state.preco).length
     );
 
     setCanDisable(response);
@@ -42,12 +42,13 @@ function AdicionaEditaLancheModal({closeModal, onCreateLanche}) {
     })
     
 /* criar uma novo lanche pelo botão cadastrar */
-    const createLanche = async () => {
-        const renomeiaCaminhoFoto = (fotoPath) => fotoPath.split('\\').pop();
+    const handleSend = async () => {
+        const renomeiaCaminhoFoto = (fotoPath) => fotoPath.split(/\\|\//).pop();
     
         const { local, localizacao, nome, descricao, preco, foto } = state;
 
         const lanche = {
+            ...(lancheToUpdate && { _id: lancheToUpdate?.id}),
             local,
             localizacao,
             nome,
@@ -55,9 +56,33 @@ function AdicionaEditaLancheModal({closeModal, onCreateLanche}) {
             preco,
             foto: `assets/images/${renomeiaCaminhoFoto(foto)}`
         }
-    /* atualizar a página mostrando o novo id cadastrado e renderizado */
-        const response = await LancheService.create(lanche);
-        onCreateLanche(response);
+        /* atualizar a página mostrando o novo id cadastrado e renderizado */
+        const serviceCall = {
+            [ActionMode.NORMAL]: () => LancheService.create(lanche),
+            [ActionMode.ATUALIZAR]: () => LancheService.updtateById(lancheToUpdate?.id, lanche),
+          }
+      
+          const response = await serviceCall[mode]();
+      
+          const actionResponse = {
+            [ActionMode.NORMAL]: () => onCreateLanche(response),
+            [ActionMode.ATUALIZAR]: () => onUpdateLanche(response),
+          }
+      
+          actionResponse[mode]();
+      
+          const reset = {
+            local: '',
+            localizacao: '',
+            nome: '',
+            descricao: '',
+            preco: '',
+            foto: '',
+          }
+
+        setState(reset);
+
+
         closeModal();
     }
 
@@ -65,7 +90,7 @@ function AdicionaEditaLancheModal({closeModal, onCreateLanche}) {
         <Modal closeModal={closeModal}>
             <div className="AdicionaLancheModal">
                 <form autoComplete="off">
-                    <h2> Adicionar ao Cardápio </h2>
+                    <h2> { ActionMode.ATUALIZAR === mode ? 'Atualizar' : 'Adicionar ao' } Cardápio </h2>
                     <div>
                         <label className="AdicionaLancheModal__text" htmlFor="local"> Local: </label>
                         <input
@@ -120,7 +145,6 @@ function AdicionaEditaLancheModal({closeModal, onCreateLanche}) {
                             id="foto"
                             type="file"
                             accept="image/png, image/gif, image/jpeg"
-                            value={state.foto}
                             onChange={(e) => handleChange(e, "foto")} />
                     </div>
 
@@ -128,9 +152,9 @@ function AdicionaEditaLancheModal({closeModal, onCreateLanche}) {
                         className="AdicionaLancheModal__enviar"
                         type="button"
                         disabled={canDisable}
-                        onClick={createLanche}>
-                        Enviar
-                    </button>
+                        onClick={handleSend}>
+                        { ActionMode.NORMAL === mode ? 'Enviar' : 'Atualizar' }
+                        </button>
                 </form>
             </div>
         </Modal>

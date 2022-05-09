@@ -85,7 +85,7 @@
     .Logo__titulo {
       font-size: 1.5em;
     }
-  }
+}
 
 .Opcoes {
   display: flex;
@@ -94,8 +94,24 @@
 .Lanche {
   background: none;
   border: none;
+  transform: translateY(-3px);
+  border-radius: 10px;
+  transition: all .5s;
+  padding: 0;
+
 }
 
 .Lanche__icone {
   cursor: pointer;
+  transform: translateY(3px);
+
+}
+
+.Lanche--ativo {
+  background: rgb(76, 58, 141);
+}
+
+
+.Lanche--deletar {
+  background: rgba(211, 0, 0);
 }

@@ -1,9 +1,12 @@
 import "./Navbar.css";
 import sacola from "assets/icons/sacola.svg";
 import logo from "assets/logo.svg";
-import btn_add from "assets/icons/btn_add.png";
+import btn_add from "assets/icons/btn_add.svg";
+import edit from "assets/icons/edit.svg";
+import deletar from 'assets/icons/deletar.svg';
+import { ActionMode } from "constants/index";
 
-function Navbar({createLanche}) {
+function Navbar({ createLanche, updateLanche, mode, deleteLanche }) {
   return (
     <div className="Header">
       <div className="row">
@@ -18,9 +21,50 @@ function Navbar({createLanche}) {
         </div>
 
         <div className="Header__opcoes Opcoes">
-        <button type="button" className="Opcoes__lanche Lanche" onClick={() => createLanche() }>
-                        <img src={btn_add} width="40px" className="Lanche__icone" alt="Adiconar Lanche" />
-        </button>
+          {/* BOTÃO DE ATUALIZAR */}
+          <button
+            type="button"
+            className={`Opcoes__lanche Lanche ${
+              mode === ActionMode.ATUALIZAR && "Lanche--ativo"
+            }`}
+            onClick={() => updateLanche()}
+          >
+            <img
+              src={edit}
+              width="40px"
+              className="Lanche__icone"
+              alt="Editar lanche"
+            />
+          </button>
+
+          <button
+            type="button"
+            className={`Opcoes__lanche Lanche ${
+              mode === ActionMode.DELETAR && "Lanche--deletar"
+            }`}
+            onClick={() => deleteLanche()}
+          >
+            <img
+              src={deletar}
+              width="40px"
+              className="Lanche__icone"
+              alt="Deletar lanche"
+            />
+          </button>
+
+          {/* BOTÃO DE CADASTRO */}
+          <button
+            type="button"
+            className="Opcoes__lanche Lanche"
+            onClick={() => createLanche()}
+          >
+            <img
+              src={btn_add}
+              width="40px"
+              className="Lanche__icone"
+              alt="Adiconar Lanche"
+            />
+          </button>
           <div className="Opcoes__sacola Sacola">
             <img
               src={sacola}
