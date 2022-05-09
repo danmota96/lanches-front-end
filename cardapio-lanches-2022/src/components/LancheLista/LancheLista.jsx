@@ -5,10 +5,14 @@ import { LancheService } from "services/LancheService";
 import LancheDetalhesModal from "components/LancheDetalhesModal/LancheDetalhesModal";
 import { ActionMode } from "constants/index";
 
-
-
-
-function LancheLista({ lancheCriado, mode, updateLanche, deleteLanche, lancheEditado, lancheRemovido}) {
+function LancheLista({
+  lancheCriado,
+  mode,
+  updateLanche,
+  deleteLanche,
+  lancheEditado,
+  lancheRemovido,
+}) {
   const [lanches, setLanches] = useState([]);
   const [lancheSelecionado, setLancheSelecionado] = useState({});
   const [lancheModal, setLancheModal] = useState(false);
@@ -42,13 +46,12 @@ function LancheLista({ lancheCriado, mode, updateLanche, deleteLanche, lancheEdi
     };
 
     mapper[mode]();
-
   };
 
   useEffect(() => {
     getLista();
   }, [lancheEditado, lancheRemovido]);
-  
+
   /* criação de novo lanche */
 
   const adicionaLancheNaLista = useCallback(
@@ -59,7 +62,7 @@ function LancheLista({ lancheCriado, mode, updateLanche, deleteLanche, lancheEdi
     [lanches]
   );
 
-/* validação para verificar se o objeto cadastrado já foi inserido, impedindo que seja incluído duas vezes */
+  /* validação para verificar se o objeto cadastrado já foi inserido, impedindo que seja incluído duas vezes */
   useEffect(() => {
     if (
       lancheCriado &&
@@ -68,7 +71,6 @@ function LancheLista({ lancheCriado, mode, updateLanche, deleteLanche, lancheEdi
       adicionaLancheNaLista(lancheCriado);
     }
   }, [adicionaLancheNaLista, lancheCriado, lanches]);
-
 
   return (
     <div className="LancheLista">

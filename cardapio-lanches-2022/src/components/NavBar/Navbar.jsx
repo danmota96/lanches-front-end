@@ -1,9 +1,8 @@
 import "./Navbar.css";
-import sacola from "assets/icons/sacola.svg";
 import logo from "assets/logo.svg";
 import btn_add from "assets/icons/btn_add.svg";
 import edit from "assets/icons/edit.svg";
-import deletar from 'assets/icons/deletar.svg';
+import deletar from "assets/icons/deletar.svg";
 import { ActionMode } from "constants/index";
 
 function Navbar({ createLanche, updateLanche, mode, deleteLanche }) {
@@ -65,14 +64,6 @@ function Navbar({ createLanche, updateLanche, mode, deleteLanche }) {
               alt="Adiconar Lanche"
             />
           </button>
-          <div className="Opcoes__sacola Sacola">
-            <img
-              src={sacola}
-              width="40px"
-              className="Sacola__icone"
-              alt="Sacola de compras"
-            />
-          </div>
         </div>
       </div>
     </div>

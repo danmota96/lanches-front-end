@@ -29,20 +29,28 @@ function LancheListaItem({
         remover
       </button>
     );
-/* renderizar o span, com o que estiver no "mode" */
-const badgeAction = (canRender) => {
-  if (canRender) 
-  return (<span className={`LancheListaItem__tag ${mode === ActionMode.DELETAR && 'LancheListaItem__tag--deletar'}`}> { mode } </span>);
-}
+  /* renderizar o span, com o que estiver no "mode" */
+  const badgeAction = (canRender) => {
+    if (canRender)
+      return (
+        <span
+          className={`LancheListaItem__tag ${
+            mode === ActionMode.DELETAR && "LancheListaItem__tag--deletar"
+          }`}
+        >
+          {" "}
+          {mode}{" "}
+        </span>
+      );
+  };
 
   return (
     <div
       className={`LancheListaItem
-      ${mode !== ActionMode.NORMAL && 'LancheListaItem--disable'}
-      ${mode === ActionMode.DELETAR && 'LancheListaItem--deletar'}`}
+      ${mode !== ActionMode.NORMAL && "LancheListaItem--disable"}
+      ${mode === ActionMode.DELETAR && "LancheListaItem--deletar"}`}
       onClick={() => clickItem(lanche.id)}
     >
-
       {badgeCounter(quantidadeSelecionada, index)}
       {badgeAction(mode !== ActionMode.NORMAL)}
       <div>
