@@ -37,10 +37,8 @@ link Swagger: https://apilanchesblue.onrender.com/lanches/api-docs
 
 URL api (render): https://apilanchesblue.onrender.com
 
+URL Front-end (vercel): https://lanches-react-1gmror4j7-danmota96.vercel.app/
 
 Conectado via mongoDB Atlas
 
 ---
-TO-DO
-Modal
-Cardápio
