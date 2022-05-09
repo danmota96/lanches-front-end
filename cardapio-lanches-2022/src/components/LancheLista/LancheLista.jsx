@@ -1,10 +1,14 @@
 import "./LancheLista.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import LancheListaItem from "components/LancheListaItem/LancheListaItem";
 import { LancheService } from "services/LancheService";
 import LancheDetalhesModal from "components/LancheDetalhesModal/LancheDetalhesModal";
+import { ActionMode } from "constants/index";
 
-function LancheLista({ lancheCriado }) {
+
+
+
+function LancheLista({ lancheCriado, mode, updateLanche, deleteLanche, lancheEditado, lancheRemovido}) {
   const [lanches, setLanches] = useState([]);
   const [lancheSelecionado, setLancheSelecionado] = useState({});
   const [lancheModal, setLancheModal] = useState(false);
@@ -30,23 +34,40 @@ function LancheLista({ lancheCriado }) {
 
   const getLancheById = async (lancheId) => {
     const response = await LancheService.getById(lancheId);
-    setLancheModal(response);
+    console.log(response);
+    const mapper = {
+      [ActionMode.NORMAL]: () => setLancheModal(response),
+      [ActionMode.ATUALIZAR]: () => updateLanche(response),
+      [ActionMode.DELETAR]: () => deleteLanche(response),
+    };
+
+    mapper[mode]();
+
   };
 
   useEffect(() => {
     getLista();
-  }, []);
+  }, [lancheEditado, lancheRemovido]);
   
   /* criação de novo lanche */
 
-  const adicionaLancheNaLista = (lanche) => {
-    const lista = [...lanches, lanche];
-    setLanches(lista);
-  };
+  const adicionaLancheNaLista = useCallback(
+    (lanche) => {
+      const lista = [...lanches, lanche];
+      setLanches(lista);
+    },
+    [lanches]
+  );
 
+/* validação para verificar se o objeto cadastrado já foi inserido, impedindo que seja incluído duas vezes */
   useEffect(() => {
-    if (lancheCriado) adicionaLancheNaLista(lancheCriado);
-  }, [lancheCriado]);
+    if (
+      lancheCriado &&
+      !lanches.map(({ id }) => id).includes(lancheCriado.id)
+    ) {
+      adicionaLancheNaLista(lancheCriado);
+    }
+  }, [adicionaLancheNaLista, lancheCriado, lanches]);
 
 
   return (
@@ -60,6 +81,7 @@ function LancheLista({ lancheCriado }) {
           onAdd={(index) => onAdd(index)}
           onRemove={(index) => onRemove(index)}
           clickItem={(lancheId) => getLancheById(lancheId)}
+          mode={mode}
         />
       ))}
       {/* modal para exibir detalhes */}
