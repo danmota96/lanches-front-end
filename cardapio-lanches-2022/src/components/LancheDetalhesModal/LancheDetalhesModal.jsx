@@ -6,21 +6,20 @@ function LancheDetalhesModal({ lanche, closeModal }) {
     <Modal closeModal={closeModal}>
       <div className="LancheDetalhesModal">
         <div>
-          <div className="LancheDetalhesModal__titulo"> {lanche.titulo} </div>
-          <div className="LancheDetalhesModal__preco">
-            {" "}
-            R$ {Number(lanche.preco).toFixed(2)}{" "}
-          </div>
+          <div className="LancheDetalhesModal__nome"> <b>{lanche.nome}</b> </div> 
+          <div className="LancheDetalhesModal__localizacao"> {" "}
+            <b>Localização:</b>{lanche.localizacao} </div>
+      
           <div className="LancheDetalhesModal__descricao">
             {" "}
             <b>Descrição:</b> {lanche.descricao}{" "}
           </div>
+          <div className="LancheDetalhesModal__preco">
+            {" "}
+            R$ {Number(lanche.preco).toFixed(2)}{" "}
+          </div>
         </div>
-        <img
-          className="LancheDetalhesModal__foto"
-          src={lanche.foto}
-          alt="erro"
-        />
+      
       </div>
     </Modal>
   );

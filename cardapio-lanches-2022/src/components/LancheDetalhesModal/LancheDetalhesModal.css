@@ -53,11 +53,15 @@
       font-size: 2em;
     }
   
-    .LancheDetalhesModal__titulo {
+    .LancheDetalhesModal__nome {
       font-size: 1.5em;
     }
   
     .LancheDetalhesModal__descricao {
+      font-size: 0.9em;
+    }
+
+    .LancheDetalhesModal__local {
       font-size: 0.9em;
     }
   }
