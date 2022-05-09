@@ -7,6 +7,8 @@
     display: flex;
     justify-content: space-around;
     cursor: pointer;
+    transition: all 0.5s;
+
   }
   
   @media (max-width: 400px) {
@@ -15,11 +17,45 @@
       height: 180px;
     }
   }
+
+  .LancheListaItem--disable {
+    box-shadow: 0px 0px 7px rgba(148, 0, 211);
+  }
+  
+  .LancheListaItem--disable,
+  .LancheListaItem--disable .LancheListaItem__preco {
+    color: gray;
+  }
+  
+  .LancheListaItem--disable .LancheListaItem__badge {
+    display: none;
+  }
+  
+  .LancheListaItem--disable img {
+    filter: grayscale(100%);
+  }
+  
+  .LancheListaItem--disable button:disabled {
+    background-color: gray;
+  }
+  
+  .LancheListaItem__tag {
+    background-color: rgb(56, 3, 247) !important;
+    color: white !important;
+    position:relative;
+    font-size: 0.6em;
+    border-radius: 5px;
+    padding: 5px;
+    top: -15px;
+    left: -10px;
+    letter-spacing: 1px;
+  }
   
   .LancheListaItem > div {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    width: 100%;
   }
   
   .LancheListaItem__local {
@@ -27,13 +63,15 @@
     font-weight: 700;
     line-height: 100%;
   }
-  
-  .LancheListaItem__localizacao {
-    font-size: 0.85em;
+
+  .LancheListaItem__nome {
+    font-size: 1.5em;
+    font-weight: 600;
+    
   }
   
   .LancheListaItem__preco {
-    color: darkviolet;
+    color: rgb(56, 3, 247);
   }
     .LancheListaItem__foto{
     width: 41%;
@@ -69,7 +107,7 @@
   }
   
   .Acoes__adicionar {
-    background-color: darkviolet;
+    background-color: rgb(76, 58, 141);
   }
   
   .Acoes__adicionar--preencher {
@@ -93,3 +131,10 @@
     left: -17px;
   }
   
+  .LancheListaItem--deletar {
+    box-shadow: 0px 0px 7px rgba(211, 0, 0);
+  }
+  
+  .LancheListaItem__tag--deletar {
+    background-color: red !important;
+  }

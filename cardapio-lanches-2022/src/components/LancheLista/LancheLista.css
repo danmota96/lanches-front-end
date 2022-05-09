@@ -17,6 +17,7 @@
   }
 }
 
+
 .Acoes {
   display: flex;
   justify-content: space-between;
@@ -42,7 +43,7 @@
 }
 
 .Acoes__adicionar {
-  background-color: darkviolet;
+  background-color: rgb(76, 58, 141);
 }
 
 .Acoes__adicionar--preencher {
